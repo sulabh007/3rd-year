@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Indian Cities Grid</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
+    <style>
+        .grid-container {
+            display: grid;
+            
+                justify-items: center;
+        }
+
+        h1{
+                font-size: 22px;
+        }
+        .city-cont{
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .specialist-cont{
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .hos-cont{
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-item  {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            
+        }
+        .city-ent{
+            width:76px;
+            height: 94px;
+        }
+
+        .specialist-ent{
+            width:122px;
+            height: 94px;
+        }
+
+        .hos-ent{
+            width: 170px;
+            height: 80px;
+        }
+
+        .icon-con {
+            width: 76px;
+            height: 76px;
+            border-radius: 4px;
+            background-color: #f2f2f2;
+        }
+        .city{
+            font-size: .71rem;
+            color: #000;
+            margin-top: 4px;
+            line-height: 1.2;
+            text-transform: capitalize;
+            font-family: Poppins;
+        }
+        .accordion ,
+        .accordion1{
+  display: none;
+}
+
+.accordion.expanded , .accordion1.expanded{
+  display: block;
+}
+
+.icon-con ,.spec-con, .hos-con{
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.icon-con.clicked {
+  background-color: rgb(255, 208, 0);
+}
+
+.spec-con.clicked {
+  background-color: rgb(255, 208, 0);
+}
+
+.hos-con.clicked {
+  background-color: rgb(255, 208, 0);
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100%;
+}
+
+.side-banner{
+        flex: 0 0 auto;
+    width: 33.33333333%;
+    background-color: #007291;
+        display: flex;
+    
+            position: sticky;
+    top: 0;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.main-con{
+        width: 66.66666666%;
+        
+}
+h3{
+    font-size: 20px;
+}
+.cities-con{
+    margin: 50px;
+}
+
+footer{
+    position: relative;
+    left: 50%;
+    transform: translateX(-53%);
+}
+
+footer a{
+    color: white;
+    text-decoration: none;
+}
+
+.container{
+    max-width: 1280px;
+}
+
+.side{
+        flex: 0 0 auto;
+    width: 50%;
+        margin: 46px;
+        color: white;
+}
+
+.side a{
+    color: white;
+    text-decoration: none;
+}
+
+.side-icon{
+    display: flex;
+    align-items: center;
+    height: 48px;
+}
+
+.right-tick-none{
+    display: none;
+}
+.right-tick-block{
+    display: block;
+}
+
+.header-icon{
+        width: 50px;
+    margin-left: 440px;
+    height: 50px;
+}
+
+.loc ,.loc a{
+    color: gray;
+}
+
+.location{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="header-icon">
+
+                    </div>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="    margin-left: 301px;">
+                        <li><form class="container-fluid justify-content-start">
+                            <button class="btn btn-sm btn-outline-secondary" type="button">Location</button>
+                        </form></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Need Help?
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login - Sign-up</a>
+                        </li>
+                        <li>
+                            <div class="grid-item accord" onclick="expandAccordion1()">
+                                
+                            <i class="fa fa-search"></i>
+                            </div>
+                        </li>
+                        <li>
+                            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                aria-controls="offcanvasRight">&#9776;</button>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="accordion1 container" style="padding:20px;">
+        <div class="accordion-item">
+            <div class="accordion-content">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search by Doctor, Specialist" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel"><a href="http://">Login - Sign-up</a></h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <h6>Profile</h6>
+            <ul>
+                <li><a href="#">Physical Consultation</a></li>
+                <li><a href="#">My Profile</a></li>
+                <li><a href="#">My Health Check</a></li>
+            </ul>
+
+            <h6>Others</h6>
+            <ul>
+                <li><a href="#">International Patients</a></li>
+                <li><a href="#">FAQ’s</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">Help Center</a></li>
+            </ul>       
+        </div>
+    </div>
+    
+    <div class="main-container container">
+        <div class="side-banner">
+            <div class="side">
+                <div class="text-con">
+                    <h1>Hi, !</h1>
+                    <p>Answer a few basic questions to get in touch with you.</p>
+                    <hr>
+                    <ul>
+                        <li class="side-icon"><span class="right-tick-block" id="city-no" style="font-size: 200%; color: #ffffff;">&#9312;</span><img src="checked.png" alt="" class="right-tick-none" id="city-tick"><a href="#City-selection" style="    padding: 10px;"> Select Location</a></li>
+                        <li class="side-icon"><span class= "right-tick-block" id="spec-no" style="font-size: 200%; color: #ffffff;">&#9313;</span><img src="checked.png" alt="" class="right-tick-none" id="spec-tick"></span><a href="#Spec-selection" style="    padding: 10px;">Select Speciality</a></li>
+                        <li class="side-icon"><span class="right-tick-block" id="hos-no" style="font-size: 200%; color: #ffffff;">&#9314;</span><img src="checked.png" alt="" class="right-tick-none" id="hos-tick"></span><a href="#Hos-selection" style="    padding: 10px;">Select Hospital</a></li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="img">
+                    <img src="book-appointment-bg.png" alt="bg" style="width:200%;    left: -78%;;position: relative;">
+                </div>
+            </div>
+            
+        </div>
+        <div class="main-con">
+            <ol>
+            <div class="cities-con" id="City-selection">
+                <h1>
+                    <li>Select Your City</li>
+                </h1>
+                <p>Private online consultations with verified doctors in all specialists.</p>
+                <h3>Popular Cities</h3>
+                <div class="grid-container city-cont">
+                    <a href="#Spec-selection">
+                        <div class="grid-item city-ent">
+                            <div class="icon-con">
+                                <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                            </div>
+                            <span class="city">
+                                Ahmedabad
+                            </span>
+                
+                        </div>
+                    </a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Amritsar
+                        </span>
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+            
+                        <span class="city">
+                            Aragonda
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Bangalore
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Bhopal
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Bhubaneswar
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Bilaspur
+                        </span>
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Chennai
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Cochin
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Delhi
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Gandhinagar
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Guwahati
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Hyderabad
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Indore
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Kakinada
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Karaikudi
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Karim Nagar
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Karur
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Kolkata
+                        </span>
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Lucknow
+                        </span>
+                    
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Madurai
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Mumbai
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Mysore
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Nasik
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Nellore
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Noida
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Trichy
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Visakhapatnam
+                        </span>
+            
+                    </div></a>
+                    <a href="#Spec-selection">
+                    <div class="grid-item city-ent">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Warangal
+                        </span>
+            
+                    </div></a>
+            
+                    <div class="grid-item city-ent accord" onclick="expandAccordion()">
+                        <div class="icon-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Other Cities
+                        </span>
+            
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">Other Cities</h3>
+                        <div class="accordion-content">
+                            <p class="loc">
+                                <a href="#" class="location">Alwar</a>&#9679;
+                                <a href="#" class="location">Chandigarh</a>&#9679;
+                                <a href="#" class="location">Chengalpattu</a>&#9679;
+                                <a href="#" class="location">Chittoor</a>&#9679;
+                                <a href="#" class="location">Coimbatore</a>&#9679;
+                                <a href="#" class="location">Dehradun</a>&#9679;
+                                <a href="#" class="location">Devanahalli</a>&#9679;
+                                <a href="#" class="location">Ghaziabad</a>&#9679;
+                                <a href="#" class="location">Gorakhpur</a>&#9679;
+                                <a href="#" class="location">Guntur</a>&#9679;
+                                <a href="#" class="location">Gurugram</a>&#9679;
+                                <a href="#" class="location">Gwalior</a>&#9679;
+                                <a href="#" class="location">Hanamkonda</a>&#9679;
+                                <a href="#" class="location">Jabalpur</a>&#9679;
+                                <a href="#" class="location">Jaipur</a>&#9679;
+                                <a href="#" class="location">Kannur</a>&#9679;
+                                <a href="#" class="location">Kanpur</a>&#9679;
+                                <a href="#" class="location">Mohali</a>&#9679;
+                                <a href="#" class="location">Nagpur</a>&#9679;
+                                <a href="#" class="location">Panvel</a>&#9679;
+                                <a href="#" class="location">Patna</a>&#9679;
+                                <a href="#" class="location">Payyannur</a>&#9679;
+                                <a href="#" class="location">Perungalathur</a>&#9679;
+                                <a href="#" class="location">Port Blair</a>&#9679;
+                                <a href="#" class="location">Pune</a>&#9679;
+                                <a href="#" class="location">Raipur</a>&#9679;
+                                <a href="#" class="location">Ranchi</a>&#9679;
+                                <a href="#" class="location">Rangareddy</a>&#9679;
+                                <a href="#" class="location">Solapur</a>&#9679;
+                                <a href="#" class="location">Surat</a>&#9679;
+                                <a href="#" class="location">Tirupati</a>&#9679;
+                                <a href="#" class="location">Vadodara</a>&#9679;
+                                <a href="#" class="location">Varanasi</a>&#9679;
+                                <a href="#" class="location">Vijayawada</a>&#9679;
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cities-con" id="Spec-selection">
+                <h1>
+                    <li>Select Speciality</li>
+                </h1>
+                <p>Private online consultations with verified doctors in all specialists.</p>
+                <div class="grid-container specialist-cont">
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Cardiology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Oncology
+                        </span>
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+            
+                        <span class="city">
+                            Neurology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Gastroenterology
+
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Gynaecology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Orthopaedics
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Dermatology
+                        </span>
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Diabetology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Ent
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            General Physician
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            General Surgery
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Hepatology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Nephrology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Neurosurgery
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Urology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Opthalmology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Pediatrics
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Psychiatry
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Pulmonology
+                        </span>
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Rheumatology
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Internal Medicine
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Colorectal Surgery
+                        </span>
+            
+                    </div></a>
+                    <a href="#Hos-selection">
+                    <div class="grid-item specialist-ent">
+                        <div class="spec-con">
+                            <img class="icon" src="https://img.icons8.com/color/48/000000/bangalore.png" />
+                        </div>
+                        <span class="city">
+                            Critical Care
+                        </span>
+            
+                    </div></a>
+                
+                </div>
+            </div>
+
+            <div class="cities-con" id="Hos-selection">
+                <h1>
+                    <li>Select The Hospital Near You</li>
+                </h1>
+                <p>Select the near by hospital you would like to book the appointment.</p>
+                <div class="grid-container hos-cont">
+                    <div class="grid-item hos-ent">
+                        <div class="hos-con">
+                            <span class="city">
+                                Hospital
+                            </span>
+                        </div>
+                    </div>
+                    <div class="grid-item hos-ent">
+                        <div class="hos-con">
+                            <span class="city">
+                                Hospital
+                            </span>
+                        </div>
+            
+            
+                    </div>
+                    <div class="grid-item hos-ent">
+                        <div class="hos-con">
+                            <span class="city">
+                                Hospital
+                            </span>
+                        </div>
+            
+            
+                    </div>
+                    <div class="grid-item hos-ent">
+                        <div class="hos-con">
+                            <span class="city">
+                                Hospital
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </ol>
+        </div>
+
+            
+    </div>
+    <footer class="container" style="margin: 50px;    background: #224855; color:white;">
+        <div class="container" style="display: flex;flex-direction: column;max-width: 920px;">
+            <div style="display: flex;margin:25px; padding-top: 50px;padding-bottom: 50px;" class="container">
+                <div style="width: 50%;">
+                    <h3>Doctors By Specialities</h3>
+                    <hr>
+                    <div style="display: flex;">
+                        <div style="width: 50%;display: flex;flex-direction: column;">
+                            <a href="#">Cardiologist</a>
+                            <a href="#">Dermatologist</a>
+                            <a href="#">Diabetologist</a>
+                            <a href="#">Endocrinologist</a>
+                            <a href="#">ENT Specialist</a>
+                            <a href="#">Gastroenterologist</a>
+                            <a href="#">General Physician</a>
+                            <a href="#">General Surgeon</a>
+                            <a href="#">Gynecologist</a>
+                            <a href="#">Hepatologist</a>
+                            <a href="#">Nephrologist</a>
+                            <a href="#">Neurologist</a>
+                            <a href="#">Neurosurgeon</a>
+                        </div>
+                        <div style="width: 50%;display: flex;flex-direction: column;">
+                            <a href="#">Oncologist</a>
+                            <a href="#">Orthopedician</a>
+                            <a href="#">Pediatrician</a>
+                            <a href="#">Psychiatrist</a>
+                            <a href="#">Pulmonologist</a>
+                            <a href="#">Gastroenterologist</a>
+                            <a href="#">Rheumatologist</a>
+                            <a href="#">Cardio thoracic surgeon</a>
+                            <a href="#">Internal medicine physician</a>
+                            <a href="#">Colorectal surgeon</a>
+                            <a href="#">Critical care specialist</a>
+                            <a href="#">Sports medicine specialist</a>
+                            <a href="#">Radiation oncologist</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 25%;display: flex;flex-direction: column;">
+                    <h3>Quick Directory Links</h3>
+                    <hr style="margin-top: 8px;">
+                    <a href="#">Our Stent Pricing</a>
+                    <a href="#">Specialist Index</a>
+                    <a href="#">Speciality Index</a>
+                    <a href="#">Diseases Index</a>
+                    <a href="#">City Hospitals Index</a>
+                    <a href="#">Treatments Index</a>
+                    <a href="#">Lady Doctors</a>
+                    <a href="#">City Index</a>
+                    <a href="#">City Speciality Index</a>
+                    <a href="#">City Specialist Index</a>
+                    <a href="#">Health Checks Directory</a>
+                    <a href="#">Language Index</a>
+                    <a href="#">City Language Index</a>   
+                </div>
+                <div style="width: 25%;display: flex;flex-direction: column;">
+                    <h3 >Others</h3>
+                    <hr style="margin-top: 8px;">
+                    <a href="#">About us</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Doctors at Apollo</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Apollo Hospitals Review</a>
+                    <a href="#">COVID 19 Isolation Centres</a>
+                    <a href="#">Knee Replacement Pricing</a>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright" style="    display: flex;justify-content: space-around;">
+                <img src="" alt="" srcset="">
+                <p>© Copyright 2023.</p>
+                <div class="wrapper">
+                    <a href="#" class="icon facebook">
+                        <div class="tooltip">Facebook</div>
+                        <span><i class="fab fa-facebook-f"></i></span>
+                    </a>
+                    <a href="#" class="icon twitter">
+                        <div class="tooltip">Twitter</div>
+                        <span><i class="fab fa-twitter"></i></span>
+                    </a>
+                    <a href="#" class="icon instagram">
+                        <div class="tooltip">Instagram</div>
+                        <span><i class="fab fa-instagram"></i></span>
+                    </a>
+                    <a href="#" class="icon github">
+                        <div class="tooltip">Github</div>
+                        <span><i class="fab fa-github"></i></span>
+                    </a>
+                    <a href="#" class="icon youtube">
+                        <div class="tooltip">Youtube</div>
+                        <span><i class="fab fa-youtube"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="accordion accordion-flush container" id="accordionFlushExample" style="display: block;max-width:920px;">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    City
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <div class="d-flex flex-wrap row-cols-2 row-cols-md-4 row-cols-lg-6 g-3"><button
+                         type="button" class="btn btn-link" tabindex="0">Alwar</button><!----><button
+                         type="button" class="btn btn-link" tabindex="0">Chandigarh</button><!----><button
+                         type="button" class="btn btn-link" tabindex="0">Chengalpattu</button><!----><button
+                         type="button" class="btn btn-link" tabindex="0">Chittoor</button><!----><button
+                         type="button" class="btn btn-link active"
+                            tabindex="0">Coimbatore</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Dehradun</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Devanahalli</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Ghaziabad</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Gorakhpur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Guntur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Gurugram</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Gwalior</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Hanamkonda</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Jabalpur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Jaipur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Kannur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Kanpur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Mohali</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Nagpur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Panvel</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Patna</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Payyannur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Perungalathur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Port Blair</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Pune</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Raipur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Ranchi</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Rangareddy</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Solapur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Surat</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Tirupati</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Vadodara</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Varanasi</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Vijayawada</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Ahmedabad</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Amritsar</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Aragonda</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Bangalore</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Bhopal</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Bhubaneswar</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Bilaspur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Chennai</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Cochin</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Delhi</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Gandhinagar</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Guwahati</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Hyderabad</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Indore</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Kakinada</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Karaikudi</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Karim Nagar</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Karur</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Kolkata</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Lucknow</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Madurai</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Mumbai</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Mysore</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Nasik</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Nellore</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Noida</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Trichy</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Visakhapatnam</button><!----><button type="button" class="btn btn-link"
+                            tabindex="0">Warangal</button><!----><!----></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // JavaScript
+    function expandAccordion() {
+        const accordion = document.querySelector(".accordion");
+        accordion.classList.toggle("expanded");
+    }
+
+    function expandAccordion1() {
+        const accordion1 = document.querySelector(".accordion1");
+        accordion1.classList.toggle("expanded");
+    }
+
+    const containers = document.querySelectorAll('.icon-con');
+
+    let currentContainer = null;
+
+    containers.forEach(container => {
+        container.addEventListener('click', () => {
+            const citytick = document.querySelector('#city-tick');
+            const cityno = document.querySelector('#city-no');
+
+           
+            
+            if (currentContainer) {
+                currentContainer.style.backgroundColor = '#f2f2f2';
+
+
+                
+                cityno.classList.add('right-tick-block');
+                cityno.classList.remove('right-tick-none');
+
+                citytick.classList.add('right-tick-none');
+                citytick.classList.remove('right-tick-block');
+            }
+            if (currentContainer !== container) {
+                container.style.backgroundColor = 'rgb(255, 208, 0)';
+                currentContainer = container;
+
+                cityno.classList.add('right-tick-none');
+                cityno.classList.remove('right-tick-block');
+
+                citytick.classList.add('right-tick-block');
+                citytick.classList.remove('right-tick-none');
+            } else {
+                currentContainer = null;
+            }
+        });
+    });
+
+    const containers2 = document.querySelectorAll('.spec-con');
+
+    let currentContainer2 = null;
+    
+    containers2.forEach(container => {
+        container.addEventListener('click', () => {
+            const spectick = document.querySelector('#spec-tick');
+            const specno = document.querySelector('#spec-no');
+            if (currentContainer2) {
+                currentContainer2.style.backgroundColor = '#f2f2f2';
+                specno.classList.add('right-tick-block');
+                specno.classList.remove('right-tick-none');
+
+                spectick.classList.add('right-tick-none');
+                spectick.classList.remove('right-tick-block');
+            }
+            if (currentContainer2 !== container) {
+                container.style.backgroundColor = 'rgb(255, 208, 0)';
+                currentContainer2 = container;
+                specno.classList.add('right-tick-none');
+                specno.classList.remove('right-tick-block');
+
+                spectick.classList.add('right-tick-block');
+                spectick.classList.remove('right-tick-none');
+            } else {
+                currentContainer2 = null;
+            }
+        });
+    });
+
+    const containers3 = document.querySelectorAll('.hos-con');
+
+    let currentContainer3 = null;
+
+    containers3.forEach(container => {
+            container.addEventListener('click', () => {
+                
+                const hostick = document.querySelector('#hos-tick');
+                const hosno = document.querySelector('#hos-no');
+
+
+
+                if (currentContainer3) {
+                    currentContainer3.style.backgroundColor = '#f2f2f2';
+
+                    hosno.classList.add('right-tick-block');
+                    hosno.classList.remove('right-tick-none');
+
+                    hostick.classList.add('right-tick-none');
+                    hostick.classList.remove('right-tick-block');
+
+                    
+                }
+                if (currentContainer3 !== container) {
+                    container.style.backgroundColor = 'rgb(255, 208, 0)';
+                    currentContainer3 = container;
+
+                    hosno.classList.add('right-tick-none');
+                    hosno.classList.remove('right-tick-block');
+
+                    hostick.classList.add('right-tick-block');
+                    hostick.classList.remove('right-tick-none');
+
+                } else {
+                    currentContainer3 = null;
+                }
+            });
+        });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>

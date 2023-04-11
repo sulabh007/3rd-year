@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Color-changing Container</title>
+    <style>
+        .container {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  margin: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+.container.clicked {
+  background-color: blue;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <script>
+        const containers = document.querySelectorAll('.container');
+
+            let currentContainer = null;
+
+            containers.forEach(container => {
+                container.addEventListener('click', () => {
+                    if (currentContainer) {
+                        currentContainer.style.backgroundColor = '#ccc';
+                    }
+                    if (currentContainer !== container) {
+                        container.style.backgroundColor = 'blue';
+                        currentContainer = container;
+                    } else {
+                        currentContainer = null;
+                    }
+                });
+            });
+
+
+    </script>
+</body>
+
+</html>
